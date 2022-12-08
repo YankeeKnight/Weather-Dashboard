@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Anybody:wght@500&display=swap');
+
+:root {
+    --red: red;
+    --dark: darkblue;
+}
+
+.custom-navbar {
+    background-color: var(--dark);
+
+}
+
+.custom-navbar a {
+    font-family: 'Anybody', cursive;
+    padding-left: 20px;
+}
+
+.weather-card {
+    width: 9rem;
+    background-color: aquamarine;
+    color: white;
+    text-align: center;
+}
