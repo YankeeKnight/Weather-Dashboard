@@ -29,82 +29,44 @@
 <body>
     <div class="container m-0">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" id="searchResults">
                 <label for="basic-url" class="form-label">Search for a City:</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="basic-url" placeholder="New York City"
+                    <input type="text" class="form-control" id="enterCity" placeholder="Enter a City"
                         aria-describedby="basic-addon3">
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn form-control btn-primary" id="searchBtn">Search</button>
                 </div>
                 <div class="mt-3 pt-2 border-top border-2">
-                    <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">An active item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                    </ul>
+                    <ul id="searchHistory" class="list-group"></ul>
                 </div>
             </div>
+
             <div class="col-md-9">
-                <div class="border rounded border-dark border-2 mt-3 p-2">
-                    <h1 id="cityDate">City</h3>
-                        <p id="temp">Temp:</p>
-                        <p id="wind">Wind:</p>
-                        <p id="humid">Humidity:</p>
-                </div>
-                <div class="mt-3">
-                    <h2 id="5day">5-Day Forecast:</h2>
-                    <div class="d-inline-flex flex-wrap">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="date">Date</h5>
-                                <p id="temp">Temp:</p>
-                                <p id="wind">Wind:</p>
-                                <p id="humid">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="date">Date</h5>
-                                <p id="temp">Temp:</p>
-                                <p id="wind">Wind:</p>
-                                <p id="humid">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="date">Date</h5>
-                                <p id="temp">Temp:</p>
-                                <p id="wind">Wind:</p>
-                                <p id="humid">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="date">Date</h5>
-                                <p id="temp">Temp:</p>
-                                <p id="wind">Wind:</p>
-                                <p id="humid">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="date">Date</h5>
-                                <p id="temp">Temp:</p>
-                                <p id="wind">Wind:</p>
-                                <p id="humid">Humidity:</p>
-                            </div>
+                <div class="mt-3 p-2 weatherContent">
+                    <div id="cityDetail" class="p-2 border rounded border-dark border-2">
+                    </div>
+
+                    <div class="row pb-2 pt-1">
+                        <div class="col-9 mt-3">
+                            <h2 id="5day">5-Day Forecast:</h2>
                         </div>
                     </div>
+
+                    <div id="fiveDay" class="d-flex"></div>
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+    <script>dayjs.extend(window.dayjs_plugin_utc)</script>
+    <script src="./assets/js/script.js"></script>
 
 </body>
 

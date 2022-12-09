@@ -3,21 +3,55 @@
 :root {
     --red: red;
     --dark: darkblue;
+    --dOrange: #f17720;
+    --lOrange: #ffa630;
+    --light: #ebebeb;
+    --lBlue: #00a7e1;
+    --dBlue: #0474ba;
+}
+
+#weatherContent {
+    display: none;
 }
 
 .custom-navbar {
-    background-color: var(--dark);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/header.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+}
 
+.fa-cloud-sun-rain {
+    filter: drop-shadow(2px 2px 8px black);
+}
+
+.form-label {
+    font-size: 20pt;
+    font-weight: 800;
 }
 
 .custom-navbar a {
     font-family: 'Anybody', cursive;
+    font-size: 40pt;
+    text-shadow: 2px 2px 8px black;
     padding-left: 20px;
 }
 
-.weather-card {
-    width: 9rem;
-    background-color: aquamarine;
+.card {
+    background-color: var(--lBlue);
+    border-color: var(--dOrange);
+}
+
+.btn {
+    background-color: var(--lBlue);
+}
+
+.btn:hover {
+    background-color: var(--dBlue);
+}
+
+.list-group li:hover {
+    background-color: var(--dark);
     color: white;
-    text-align: center;
 }
