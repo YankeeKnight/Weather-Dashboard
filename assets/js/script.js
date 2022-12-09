@@ -1,7 +1,18 @@
+/* Open items
+ 1. Capitalize first letter of city in history
+ 2. Hide #weatherContent and #5day on start
+ 3. Make header and #fiveDay tiles responsive
+ 4. Icons not showing in #fiveDay tiles
+
+*/
+
 var apiKey = "8cc1b2e412b455fccbc66353769a349b";
 var today = dayjs().format('MM/DD/YYYY');
 console.log(today);
-var searchHistoryList = [];
+var cities = [];
+var searchHistoryElement = document.querySelector("#searchHistory");
+var searchButtonElement = document.querySelector("#searchBtn");
+
 
 function currentCondition(city) {
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
@@ -59,14 +70,15 @@ function futureCondition(lat, lon) {
                 wind: futureResponse.list[i].wind.speed,
                 humidity: futureResponse.list[i].main.humidity
             };
+
             var currDate = dayjs.unix(cityInfo.date).format("MM/DD/YYYY");
             var iconURL = `<img scr="https://openweathermap.org/img/w/${cityInfo.icon}.png" 
-                            alt="${futureResponse.list[i].weather[0].main}" />`;
+                            alt="${futureResponse.list[i].weather[0].description}" />`;
 
             if (someTime.format("HH:mm:ss") === "11:00:00" || someTime.format("HH:mm:ss") === "12:00:00" || someTime.format("HH:mm:ss") === "13:00:00") {
                 var futureCard = $(`
                 <div class="pl-3">
-                    <div class="card pl-3 pt-3 ms-0 me-1 text-light border rounded border-2" style="width:12rem";>
+                    <div class="card pl-3 pt-3 ms-0 me-1 text-light" style="width:12rem";>
                         <div class="card-body">
                             <h5>${currDate}</h5>
                             <p>${iconURL}</p>
@@ -83,29 +95,79 @@ function futureCondition(lat, lon) {
     });
 }
 
-$("#searchBtn").on("click", function (event) {
+function capitalizeFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+var formSubmitHandler = function (event) {
     event.preventDefault();
-
     var city = $("#enterCity").val().trim();
-    currentCondition(city);
-    if (!searchHistoryList.includes(city)) {
-        searchHistoryList.push(city);
-        var searchedCity = $(`<li class="list-group-item">${city}</li>`);
-        $("#searchHistory").append(searchedCity);
-    };
-
-    localStorage.setItem("city", JSON.stringify(searchHistoryList));
-    console.log(searchHistoryList);
-
-});
-
-$(document).ready(function () {
-    var searchHistoryArr = JSON.parse(localStorage.getItem("city"));
-
-    if (searchHistoryArr !== null) {
-        var lastSearchedIndex = searchHistoryArr.length - 1;
-        var lastSearchedCity = searchHistoryArr[lastSearchedIndex];
-        currentCondition(lastSearchedCity);
-        console.log(`Last searched city: ${lastSearchedCity}`);
+    if (city) {
+        currentCondition(city);
+        cities.unshift({ city });
+        $("#enterCity").val = "";
+    } else {
+        alert("Please enter a City");
     }
-});
+    saveSearch();
+    pastSearch(city);
+}
+
+
+var saveSearch = function () {
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
+
+var pastSearch = function (pastSearch) {
+    pastSearchElement = document.createElement("button");
+    pastSearchElement.textContent = pastSearch;
+    pastSearchElement.classList = "d-flex justify-content-center w-100 historyBtn border rounded p-2";
+    pastSearchElement.setAttribute("data-city", pastSearch);
+    pastSearchElement.setAttribute("type", "submit");
+    capitalizeFirst(pastSearch);
+
+    searchHistoryElement.prepend(pastSearchElement);
+}
+
+var pastSearchHandler = function (event) {
+    var city = event.target.getAttribute("data-city");
+    if (city) {
+        currentCondition(city);
+    }
+}
+
+
+searchButtonElement.addEventListener("click", formSubmitHandler);
+searchHistoryElement.addEventListener("click", pastSearchHandler);
+
+
+
+
+
+
+// $("#searchBtn").on("click", function (event) {
+//     event.preventDefault();
+
+//     var city = $("#enterCity").val().trim();
+//     currentCondition(city);
+//     if (!searchHistoryList.includes(city)) {
+//         searchHistoryList.push(city);
+//         var searchedCity = $(`<li class="list-group-item">${city}</li>`);
+//         $("#searchHistory").append(searchedCity);
+//     };
+
+//     localStorage.setItem("city", JSON.stringify(searchHistoryList));
+//     console.log(searchHistoryList);
+
+// });
+
+// $(document).ready(function () {
+//     var searchHistoryArr = JSON.parse(localStorage.getItem("city"));
+
+//     if (searchHistoryArr !== null) {
+//         var lastSearchedIndex = searchHistoryArr.length - 1;
+//         var lastSearchedCity = searchHistoryArr[lastSearchedIndex];
+//         currentCondition(lastSearchedCity);
+//         console.log(`Last searched city: ${lastSearchedCity}`);
+//     }
+// });

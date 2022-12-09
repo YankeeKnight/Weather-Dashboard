@@ -15,7 +15,7 @@
 }
 
 .custom-navbar {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/header.jpg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/clouds.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -40,18 +40,31 @@
 
 .card {
     background-color: var(--lBlue);
-    border-color: var(--dOrange);
+    border: 2px solid var(--lOrange);
 }
 
-.btn {
+.btn-custom {
+    background-color: var(--lBlue) !;
+}
+
+.btn-custom:hover {
+    background-color: var(--lOrange) !;
+}
+
+.historyBtn {
     background-color: var(--lBlue);
+    color: var(--light);
 }
 
-.btn:hover {
-    background-color: var(--dBlue);
+.historyBtn:hover {
+    background-color: var(--lOrange);
 }
 
 .list-group li:hover {
     background-color: var(--dark);
     color: white;
+}
+
+.hide {
+    display: none;
 }
