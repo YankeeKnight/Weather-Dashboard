@@ -14,8 +14,12 @@
     display: none;
 }
 
+body {
+    background-color: var(--light) !important;
+}
+
 .custom-navbar {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../images/clouds.jpg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../images/clouds.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -44,11 +48,11 @@
 }
 
 .btn-custom {
-    background-color: var(--lBlue) !;
+    background-color: var(--lBlue) !important;
 }
 
 .btn-custom:hover {
-    background-color: var(--lOrange) !;
+    background-color: var(--lOrange) !important;
 }
 
 .historyBtn {
@@ -63,8 +67,4 @@
 .list-group li:hover {
     background-color: var(--dark);
     color: white;
-}
-
-.hide {
-    display: none;
 }

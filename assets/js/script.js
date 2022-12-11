@@ -1,6 +1,5 @@
 /* Open items
  1. Capitalize first letter of city in history
- 2. Hide #weatherContent and #5day on start
  3. Make header and #fiveDay tiles responsive
  4. Icons not showing in #fiveDay tiles
 
@@ -12,11 +11,19 @@ console.log(today);
 var cities = [];
 var searchHistoryElement = document.querySelector("#searchHistory");
 var searchButtonElement = document.querySelector("#searchBtn");
+var cityDetail = document.querySelector("#cityDetail");
 
+function init() {
+    cityDetail.style.display = "none";
+    $("#5day").empty();
+}
+
+init();
 
 function currentCondition(city) {
-    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
 
+
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -37,6 +44,7 @@ function currentCondition(city) {
                           <p>Wind: ${cityWeatherResponse.wind.speed} MPH</p>
                           <p>Humidity: ${cityWeatherResponse.main.humidity} \%<p>`);
 
+        cityDetail.style.display = "block";
         $("#cityDetail").append(currentCity);
 
         var lat = cityWeatherResponse.coord.lat;
@@ -47,7 +55,7 @@ function currentCondition(city) {
 }
 
 function futureCondition(lat, lon) {
-    var futureURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+    var futureURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
 
     $.ajax({
         url: futureURL,
@@ -72,6 +80,7 @@ function futureCondition(lat, lon) {
             };
 
             var currDate = dayjs.unix(cityInfo.date).format("MM/DD/YYYY");
+            console.log(cityInfo.icon);
             var iconURL = `<img scr="https://openweathermap.org/img/w/${cityInfo.icon}.png" 
                             alt="${futureResponse.list[i].weather[0].description}" />`;
 

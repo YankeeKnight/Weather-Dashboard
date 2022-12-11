@@ -8,7 +8,7 @@ Challenge 06 - due 12_19
 ## Link to Deployed Application
 
 ## Credits
-1. "clouds.jpg" Personal Collection
+1. Liza Grafals, "Clouds at the Lakes", 2022, photograph, "clouds.jpg" Personal Collection
 
 ## Purpose/Usage
 
