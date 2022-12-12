@@ -83,7 +83,7 @@ function futureCondition(lat, lon) {
             };
 
             var currDate = dayjs.unix(cityInfo.date).format("MM/DD/YYYY");
-            var iconURL = `<img scr="https://openweathermap.org/img/w/${cityInfo.icon}.png" 
+            var iconURL = `<img src="https://openweathermap.org/img/w/${cityInfo.icon}.png" 
                             alt="${futureResponse.list[i].weather[0].description}">`;
 
             if (someTime.format("HH:mm:ss") === "11:00:00" || someTime.format("HH:mm:ss") === "12:00:00" || someTime.format("HH:mm:ss") === "13:00:00") {
@@ -145,5 +145,13 @@ var pastSearchHandler = function (event) {
     }
 }
 
+// Event Listeners
 searchButtonElement.addEventListener("click", formSubmitHandler);
+
+// Allows search to run when enter key is pressed while user is inside input box
+$("#enterCity").keyup(function (event) {
+    if (event.keyCode === 13) {
+        $("#searchBtn").click();
+    }
+});
 searchHistoryElement.addEventListener("click", pastSearchHandler);
