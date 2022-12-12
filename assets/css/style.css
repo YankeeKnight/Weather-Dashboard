@@ -58,6 +58,7 @@ body {
 .historyBtn {
     background-color: var(--lBlue);
     color: var(--light);
+    text-transform: capitalize;
 }
 
 .historyBtn:hover {

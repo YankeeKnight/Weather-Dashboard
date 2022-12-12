@@ -1,10 +1,10 @@
 /* Open items
- 1. Capitalize first letter of city in history
- 3. Make header and #fiveDay tiles responsive
- 4. Icons not showing in #fiveDay tiles
+ 1. Make header and #fiveDay tiles responsive
+ 2. Icons not showing in #fiveDay tiles
 
 */
 
+// Declared variables
 var apiKey = "8cc1b2e412b455fccbc66353769a349b";
 var today = dayjs().format('MM/DD/YYYY');
 console.log(today);
@@ -13,6 +13,7 @@ var searchHistoryElement = document.querySelector("#searchHistory");
 var searchButtonElement = document.querySelector("#searchBtn");
 var cityDetail = document.querySelector("#cityDetail");
 
+// Ensures no content can be viewed until a search is executed
 function init() {
     cityDetail.style.display = "none";
     $("#5day").empty();
@@ -20,6 +21,7 @@ function init() {
 
 init();
 
+// API called to provide current conditions for the city searched
 function currentCondition(city) {
 
 
@@ -54,6 +56,7 @@ function currentCondition(city) {
     });
 }
 
+// Forecast API called to provide the 5 Day Forecast for city searched
 function futureCondition(lat, lon) {
     var futureURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
 
@@ -80,9 +83,8 @@ function futureCondition(lat, lon) {
             };
 
             var currDate = dayjs.unix(cityInfo.date).format("MM/DD/YYYY");
-            console.log(cityInfo.icon);
             var iconURL = `<img scr="https://openweathermap.org/img/w/${cityInfo.icon}.png" 
-                            alt="${futureResponse.list[i].weather[0].description}" />`;
+                            alt="${futureResponse.list[i].weather[0].description}">`;
 
             if (someTime.format("HH:mm:ss") === "11:00:00" || someTime.format("HH:mm:ss") === "12:00:00" || someTime.format("HH:mm:ss") === "13:00:00") {
                 var futureCard = $(`
@@ -96,7 +98,7 @@ function futureCondition(lat, lon) {
                             <p>Humidity: ${cityInfo.humidity}\%</p>
                         </div>
                     </div>
-                </div> `);
+                </div>`);
 
                 $("#fiveDay").append(futureCard);
             }
@@ -104,40 +106,38 @@ function futureCondition(lat, lon) {
     });
 }
 
-function capitalizeFirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
+// Handles the input in the city field
 var formSubmitHandler = function (event) {
     event.preventDefault();
     var city = $("#enterCity").val().trim();
     if (city) {
         currentCondition(city);
         cities.unshift({ city });
-        $("#enterCity").val = "";
+        $("#enterCity").val('');
+        saveSearch();
+        pastSearch(city);
     } else {
         alert("Please enter a City");
     }
-    saveSearch();
-    pastSearch(city);
 }
 
-
+// Saves the cities searched to local storage
 var saveSearch = function () {
     localStorage.setItem("cities", JSON.stringify(cities));
 }
 
+// Dynamically creates usable buttons with cities searched
 var pastSearch = function (pastSearch) {
     pastSearchElement = document.createElement("button");
     pastSearchElement.textContent = pastSearch;
     pastSearchElement.classList = "d-flex justify-content-center w-100 historyBtn border rounded p-2";
     pastSearchElement.setAttribute("data-city", pastSearch);
     pastSearchElement.setAttribute("type", "submit");
-    capitalizeFirst(pastSearch);
 
     searchHistoryElement.prepend(pastSearchElement);
 }
 
+// Handles when a button in the saved search is clicked
 var pastSearchHandler = function (event) {
     var city = event.target.getAttribute("data-city");
     if (city) {
@@ -145,38 +145,5 @@ var pastSearchHandler = function (event) {
     }
 }
 
-
 searchButtonElement.addEventListener("click", formSubmitHandler);
 searchHistoryElement.addEventListener("click", pastSearchHandler);
-
-
-
-
-
-
-// $("#searchBtn").on("click", function (event) {
-//     event.preventDefault();
-
-//     var city = $("#enterCity").val().trim();
-//     currentCondition(city);
-//     if (!searchHistoryList.includes(city)) {
-//         searchHistoryList.push(city);
-//         var searchedCity = $(`<li class="list-group-item">${city}</li>`);
-//         $("#searchHistory").append(searchedCity);
-//     };
-
-//     localStorage.setItem("city", JSON.stringify(searchHistoryList));
-//     console.log(searchHistoryList);
-
-// });
-
-// $(document).ready(function () {
-//     var searchHistoryArr = JSON.parse(localStorage.getItem("city"));
-
-//     if (searchHistoryArr !== null) {
-//         var lastSearchedIndex = searchHistoryArr.length - 1;
-//         var lastSearchedCity = searchHistoryArr[lastSearchedIndex];
-//         currentCondition(lastSearchedCity);
-//         console.log(`Last searched city: ${lastSearchedCity}`);
-//     }
-// });
