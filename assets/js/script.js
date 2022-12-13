@@ -85,7 +85,7 @@ function futureCondition(lat, lon) {
             if (someTime.format("HH:mm:ss") === "11:00:00" || someTime.format("HH:mm:ss") === "12:00:00" || someTime.format("HH:mm:ss") === "13:00:00") {
                 var futureCard = $(`
                 <div class="pl-3">
-                    <div class="card pl-3 pt-3 ms-0 me-1 text-light" style="width:11.5rem";>
+                    <div class="card pl-3 pt-3 ms-0 me-1 my-2 text-light" style="width:11.5rem";>
                         <div class="card-body">
                             <h5>${currDate}</h5>
                             <p>${iconURL}</p>
