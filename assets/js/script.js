@@ -1,6 +1,5 @@
 /* Open items
  1. Make header and #fiveDay tiles responsive
- 2. Icons not showing in #fiveDay tiles
 
 */
 
@@ -12,14 +11,13 @@ var cities = [];
 var searchHistoryElement = document.querySelector("#searchHistory");
 var searchButtonElement = document.querySelector("#searchBtn");
 var cityDetail = document.querySelector("#cityDetail");
+var fiveDayHead = document.querySelector("#fiveDayHead");
 
 // Ensures no content can be viewed until a search is executed
 function init() {
     cityDetail.style.display = "none";
-    $("#5day").empty();
+    fiveDayHead.style.display = "none";
 }
-
-init();
 
 // API called to provide current conditions for the city searched
 function currentCondition(city) {
@@ -65,6 +63,7 @@ function futureCondition(lat, lon) {
         method: "GET"
     }).then(function (futureResponse) {
         console.log(futureResponse);
+        fiveDayHead.style.display = "block";
         $("#fiveDay").empty();
 
         for (let i = 0; i < futureResponse.list.length; i++) {
@@ -89,7 +88,7 @@ function futureCondition(lat, lon) {
             if (someTime.format("HH:mm:ss") === "11:00:00" || someTime.format("HH:mm:ss") === "12:00:00" || someTime.format("HH:mm:ss") === "13:00:00") {
                 var futureCard = $(`
                 <div class="pl-3">
-                    <div class="card pl-3 pt-3 ms-0 me-1 text-light" style="width:12rem";>
+                    <div class="card pl-3 pt-3 ms-0 me-1 text-light" style="width:11.5rem";>
                         <div class="card-body">
                             <h5>${currDate}</h5>
                             <p>${iconURL}</p>
@@ -155,3 +154,5 @@ $("#enterCity").keyup(function (event) {
     }
 });
 searchHistoryElement.addEventListener("click", pastSearchHandler);
+
+init();

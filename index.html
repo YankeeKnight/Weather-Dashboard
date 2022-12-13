@@ -15,53 +15,57 @@
     <title>Weather Dashboard</title>
 </head>
 
-<header>
-    <nav class="navbar navbar-dark custom-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="fa-solid fa-cloud-sun-rain fa-xl d-inline-block align-text-top"></i>
-                Weather Dashboard
-            </a>
-        </div>
-    </nav>
-</header>
-
-<body>
-    <div class="container m-0">
-        <div class="row">
-            <div class="col-md-3" id="searchResults">
-                <label for="basic-url" class="form-label">Search for a City:</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="enterCity" placeholder="Enter a City"
-                        aria-describedby="basic-addon3">
-                </div>
-                <div>
-                    <button type="button" class="btn form-control btn-primary btn-custom" id="searchBtn">Search</button>
-                </div>
-                <div class="mt-3 pt-2 border-top border-2" id="searchHistory">
-                    <!-- Place for Search History Buttons -->
-                </div>
+<body class="flex-column min-100-vh">
+    <header>
+        <nav class="navbar navbar-dark custom-navbar">
+            <div>
+                <a class="navbar-brand d-flex flex-wrap" href="#">
+                    <i class="fa-solid fa-cloud-sun-rain fa-xl d-inline-block align-text-top pe-2"></i>
+                    Weather Dashboard
+                </a>
             </div>
+        </nav>
+    </header>
 
-            <div class="col-md-9">
-                <div class="mt-3 p-2 weatherContent">
-                    <div id="cityDetail" class="p-2 border rounded border-dark border-2">
-                        <!-- A place for Today's City Details -->
+
+    <main class="flex-row">
+        <div class="container m-0">
+            <div class="row">
+                <div class="col-md-3" id="searchResults">
+                    <label for="basic-url" class="form-label">Search for a City:</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="enterCity" placeholder="Enter a City"
+                            aria-describedby="basic-addon3">
                     </div>
+                    <div>
+                        <button type="button" class="btn form-control btn-primary btn-custom"
+                            id="searchBtn">Search</button>
+                    </div>
+                    <div class="mt-3 pt-2 border-top border-2" id="searchHistory">
+                        <!-- Place for Search History Buttons -->
+                    </div>
+                </div>
 
-                    <div class="row pb-2 pt-1">
-                        <div class="col-9 mt-3">
-                            <h2 id="5day">5-Day Forecast:</h2>
+                <div class="col-md-9">
+                    <div class="mt-3 p-2 weatherContent">
+                        <div id="cityDetail" class="p-2 border rounded border-dark border-2">
+                            <!-- A place for Today's City Details -->
+                        </div>
+
+                        <div class="row pb-2 pt-1">
+                            <div class="col-9 mt-3">
+                                <h2 id="fiveDayHead">5-Day Forecast:</h2>
+                            </div>
+                        </div>
+
+                        <div id="fiveDay" class="d-flex flex-wrap custom-5day">
+                            <!-- A place for the 5 Day Forecast -->
                         </div>
                     </div>
-
-                    <div id="fiveDay" class="d-inline-flex flex-sm-row">
-                        <!-- A place for the 5 Day Forecast -->
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>

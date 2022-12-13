@@ -69,3 +69,13 @@ body {
     background-color: var(--dark);
     color: white;
 }
+
+@media screen and (max-width: 588px) {
+    .custom-navbar a {
+        font-size: 24pt;
+    }
+
+    .custom-5day {
+        justify-content: center;
+    }
+}
