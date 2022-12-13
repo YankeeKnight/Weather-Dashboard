@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anybody:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Zen+Dots&display=swap');
 
 :root {
     --red: red;
@@ -68,6 +69,11 @@ body {
 .list-group li:hover {
     background-color: var(--dark);
     color: white;
+}
+
+footer p {
+    font-family: 'Zen Dots', cursive;
+    font-size: small;
 }
 
 @media screen and (max-width: 588px) {

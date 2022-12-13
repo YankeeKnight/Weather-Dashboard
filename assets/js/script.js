@@ -1,8 +1,3 @@
-/* Open items
- 1. Make header and #fiveDay tiles responsive
-
-*/
-
 // Declared variables
 var apiKey = "8cc1b2e412b455fccbc66353769a349b";
 var today = dayjs().format('MM/DD/YYYY');
@@ -12,11 +7,13 @@ var searchHistoryElement = document.querySelector("#searchHistory");
 var searchButtonElement = document.querySelector("#searchBtn");
 var cityDetail = document.querySelector("#cityDetail");
 var fiveDayHead = document.querySelector("#fiveDayHead");
+var cbManny = document.querySelector("#manny");
 
 // Ensures no content can be viewed until a search is executed
 function init() {
     cityDetail.style.display = "none";
     fiveDayHead.style.display = "none";
+    cbManny.style.display = "none";
 }
 
 // API called to provide current conditions for the city searched
@@ -100,6 +97,7 @@ function futureCondition(lat, lon) {
                 </div>`);
 
                 $("#fiveDay").append(futureCard);
+                cbManny.style.display = "block";
             }
         }
     });
@@ -115,7 +113,7 @@ var formSubmitHandler = function (event) {
         $("#enterCity").val('');
         saveSearch();
         pastSearch(city);
-    } else {
+    } else if (city === "") {
         alert("Please enter a City");
     }
 }
