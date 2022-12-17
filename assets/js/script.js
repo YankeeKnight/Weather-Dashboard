@@ -24,16 +24,16 @@ function currentCondition(city) {
     $.ajax({
         url: queryURL,
         method: "GET",
-    }).then(function (cityWeatherResponse) {
-        console.log(cityWeatherResponse);
+        success: (function (cityWeatherResponse) {
+            console.log(cityWeatherResponse);
 
-        $("#weatherContent").css("display", "block");
-        $("#cityDetail").empty();
+            $("#weatherContent").css("display", "block");
+            $("#cityDetail").empty();
 
-        var iconCode = cityWeatherResponse.weather[0].icon;
-        var iconURL = `https://openweathermap.org/img/w/${iconCode}.png`;
+            var iconCode = cityWeatherResponse.weather[0].icon;
+            var iconURL = `https://openweathermap.org/img/w/${iconCode}.png`;
 
-        var currentCity = $(`<h2 id="currentCity"> 
+            var currentCity = $(`<h2 id="currentCity"> 
                           ${cityWeatherResponse.name} 
                           ${today} <img src="${iconURL}" 
                           alt="${cityWeatherResponse.weather[0].description}" /></h2>
@@ -41,13 +41,22 @@ function currentCondition(city) {
                           <p>Wind: ${cityWeatherResponse.wind.speed} MPH</p>
                           <p>Humidity: ${cityWeatherResponse.main.humidity} \%<p>`);
 
-        cityDetail.style.display = "block";
-        $("#cityDetail").append(currentCity);
+            cityDetail.style.display = "block";
+            $("#cityDetail").append(currentCity);
 
-        var lat = cityWeatherResponse.coord.lat;
-        var lon = cityWeatherResponse.coord.lon;
+            var lat = cityWeatherResponse.coord.lat;
+            var lon = cityWeatherResponse.coord.lon;
 
-        futureCondition(lat, lon);
+            futureCondition(lat, lon);
+        }),
+        //Returns info on error in console and alert if city not found.
+        error: function (request, status, error) {
+            alert(request.responseText);
+            console.log(status);
+            console.log(error);
+
+            return error;
+        }
     });
 }
 
