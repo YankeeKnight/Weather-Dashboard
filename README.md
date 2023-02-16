@@ -1,5 +1,5 @@
 # weather-dashboard
-Challenge 06 - due 12_19
+Server-Side APIs
 
 ## Description
 A weather dashboard running in the browser which features dynamically updated HTML and CSS.
